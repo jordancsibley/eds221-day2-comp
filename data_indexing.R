@@ -57,3 +57,30 @@ df
 # replaced anything less than 5 to be 0 
 
 #rm(list = ls())  this function will remove everything in your environment. good to run at the begining 
+
+
+# after lunch session ----
+
+mtcars
+# data set already in r 
+mtcars[mtcars$gear == 5,]
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4,]
+
+subset(mtcars, gear == 5) # this does not work with only 1 equal sign
+subset(mtcars, gear == 5 & cyl == 4)
+
+library(tidyverse)
+ggplot(data = subset(mtcars, gear == 5 & cyl == 4),
+       aes(x = mpg, y = disp))+
+  geom_point()
+
+
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df #letters is a preset vector of alphabet
+df$z <- NULL # gets rid of column z 
+df
+
+df[c("x", "y")]
+#returns just the x and y columns 
+df[setdiff(names(df), "z")]
+# does the same thing as above (excludes z)
